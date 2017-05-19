@@ -1,0 +1,17 @@
+.edit {
+    position: absolute;
+    right: 0;
+    width: 300px;
+    top: 50px;
+}
+
+#imageCanvas {
+    width: auto;
+    height: auto;
+    max-width: 1600px;
+}
+
+.buttons {
+    width: 100px;
+    
+}

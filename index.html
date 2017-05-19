@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>PixlShiftr</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+    
+    
+    
+    <input type="file" id="imageLoader" name="imageLoader">
+    <canvas id="imageCanvas"></canvas>
+    
+    
+    
+    
+    <div class="edit">
+        <div data-role="header">
+        </div>
+    
+        <div data-role="main" class="ui-content">
+            <form method="post" action="/action_page_post.php">
+            <label for="points">Distortion:</label>
+            <input type="range" name="points" id="points" value="0" min="0" max="100" onchange="distort(this.value)">
+            </form>
+        </div>
+        
+        <div class="buttons">
+            <button type="button" id="buttonInvert" onclick="invert()">Invert</button>
+            <button type="button" id="buttonRevert" onclick="erase()">Erase</button>
+        </div>  
+    </div>
+    
+    <p id="test"></p>
+    <script src="script.js"></script>
+</body>
+</html>

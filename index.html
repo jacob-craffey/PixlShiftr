@@ -11,28 +11,23 @@
 </head>
 <body>
     
-    
-    
-    <input type="file" id="imageLoader" name="imageLoader">
     <canvas id="imageCanvas"></canvas>
     
-    
-    
-    
     <div class="edit">
-        <div data-role="header">
-        </div>
+        <div data-role="header"></div>
     
         <div data-role="main" class="ui-content">
             <form method="post" action="/action_page_post.php">
             <label for="points">Distortion:</label>
             <input type="range" name="points" id="points" value="0" min="0" max="100" onchange="distort(this.value)">
+            <input type="file" id="imageLoader" name="imageLoader">
             </form>
         </div>
         
         <div class="buttons">
             <button type="button" id="buttonInvert" onclick="invert()">Invert</button>
             <button type="button" id="buttonRevert" onclick="erase()">Erase</button>
+            <button type="button" id="buttonSort" onclick="bubbleSort()">Sort</button>
         </div>  
     </div>
     

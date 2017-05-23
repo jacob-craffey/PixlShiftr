@@ -14,7 +14,6 @@ function handleImage(e){
 
 function distort(newVal) {
     imgData = getImgData();
-    pixels = [];
     var random = (Math.floor(Math.random() * 2500) + 1) * 4;
     var i = 0;
        
@@ -25,8 +24,6 @@ function distort(newVal) {
         var x = Math.floor((i / 4) % canvas.width);
         var y = Math.floor((i / 4) / canvas.width);
         
-        console.log(x + ', ' + y);
-        
         for (var j = 0; j < newVal; j++) {
             imgData.data[((y * (imgData.width * 4)) + ((x * 4) + j))] = imgData.data[(((y - newVal) * (imgData.width * 4)) + ((x * 4) + j))];
             imgData.data[((y * (imgData.width * 4)) + ((x * 4) + j)) + 1] = imgData.data[(((y - newVal) * (imgData.width * 4)) + ((x * 4) + j + 1))];
@@ -34,9 +31,6 @@ function distort(newVal) {
             imgData.data[((y * (imgData.width * 4)) + ((x * 4) + j)) + 3] = imgData.data[(((y - newVal) * (imgData.width * 4)) + ((x * 4) + j + 3))];
         }
     }
-    
-    
-    
     ctx.putImageData(imgData, 0, 0);
 }
 
@@ -52,6 +46,37 @@ function invert(){
         imgData.data[i+3] = invertNum;
     }
     ctx.putImageData(imgData, 0, 0);
+}
+
+function bubbleSort() {
+    imgData = ctx.getImageData(0, 0, img.height. img.width);
+    
+    for (var n = 0; n < imgData.data.length; n+=4) {
+        for (var i = 0; i < imgData.data.length - n - 4; i+=4) {
+            var curRed = imgData.data[i];
+            var curGreen = imgData.data[i+1];
+            var curBlue = imgData.data[i+2];
+            var curBright = (curRed + curGreen + curBlue) / 3;
+            
+            var nextRed = imgData.data[i+4];
+            var nextGreen = imgData.data[i+5];
+            var nextBlue = imgData.data[i+6];
+            var nextBright = (nextRed + nextGreen + nextBlue) / 3;
+            
+            
+            if (curBright < nextBright) {
+                imgData.data[i] = nextRed;
+                imgData.data[i+1] = nextGreen;
+                imgData.data[i+2] = nextBlue;
+                imgData.data[i+4] = curRed;
+                imgData.data[i+5] = curGreen;
+                imgData.data[i+6] = curBlue;
+            }
+        } 
+       
+    }
+     ctx.putImageData(imgData, 0, 0);
+    
 }
 
 function erase() {

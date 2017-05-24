@@ -1,17 +1,31 @@
-.edit {
+@import url('https://fonts.googleapis.com/css?family=Baloo+Da');
+
+.sidebar {
     position: absolute;
     right: 0;
     width: 300px;
-    top: 50px;
+    top: 0px;
 }
 
 #imageCanvas {
     width: auto;
     height: auto;
     max-width: 1600px;
+    margin-left: 50px;
+    margin-top: 50px;
 }
 
 .buttons {
     width: 100px;
     
+}
+
+h1 {
+    font-size: 48px;
+    font-family: 'Baloo Da', cursive;'
+    
+}
+
+html {
+     background-color: rgb(50, 50, 50);
 }

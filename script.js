@@ -92,7 +92,7 @@ function erase() {
 
 function save() {
     canvas.toBlob(function(blob) {
-        saveAs(blob, "myPixlImage.png");
+        saveAs(blob, "PrettyPixlPic.png");
     });
 }
 

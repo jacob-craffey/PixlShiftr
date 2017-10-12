@@ -1,31 +1,59 @@
 @import url('https://fonts.googleapis.com/css?family=Baloo+Da');
 
 .sidebar {
+    padding: 0px 10px 10px 10px;
+    border-radius: 25px;
     position: absolute;
-    right: 0;
+    right: 25px;
     width: 300px;
-    top: 0px;
+    top: 25px;
+    background-color: #49483E;
 }
 
 #imageCanvas {
     width: auto;
     height: auto;
-    max-width: 1600px;
-    margin-left: 50px;
-    margin-top: 50px;
+    margin: 50px;
+    max-width: 50%;
 }
 
-.buttons {
-    width: 100px;
-    
+.button-menu {
+    width: 275px;
+    display: flex;
+    margin: 0 auto;
+}
+
+.button {
+    margin: 5px;
 }
 
 h1 {
-    font-size: 48px;
-    font-family: 'Baloo Da', cursive;'
-    
+    color: #66D9EF;
+    font-size: 64px;
+    font-family: 'Baloo Da', cursive;
+    font-weight: lighter;
+    margin-top: 10px;
+    margin-bottom: 0px;
 }
 
-html {
-     background-color: rgb(50, 50, 50);
+h3, #glitch {
+    color: #66D9EF;
+    font-size: 24px;
+    font-family: 'Baloo Da', cursive;
+    font-weight: lighter;
+    margin-top: 0px;
 }
+
+.ui-page {
+    background-color: #3E3D32;
+}
+
+.main {
+    position: relative;
+    border-radius: 25px;
+    margin: 25px;
+    min-height: 550px;
+    max-height: 50%;
+    background-color: #4E4D42;
+}
+

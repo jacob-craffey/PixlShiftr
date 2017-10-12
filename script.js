@@ -1,5 +1,6 @@
 // Displays the image from the file chooser.
 function handleImage(e){
+    console.log(e);
     var reader = new FileReader();
     reader.onload = function(event){
         img = new Image();
@@ -16,7 +17,7 @@ function handleImage(e){
 // Gives the image a glitch effect
 function distort(newVal) {
     imgData = getImgData();
-    var random = (Math.floor(Math.random() * 2500) + 1) * 4;
+    var random;
     var i = 0;
        
     while (i < imgData.data.length) {
@@ -89,6 +90,12 @@ function erase() {
     ctx.drawImage(img, 0 , 0);
 }
 
+function save() {
+    canvas.toBlob(function(blob) {
+        saveAs(blob, "testimg.png");
+    });
+}
+
 
 // Returns the imageData for image.
 function getImgData() {
@@ -102,5 +109,4 @@ imageLoader.addEventListener('change', handleImage, false);
 var canvas = document.getElementById('imageCanvas');
 var ctx = canvas.getContext('2d');
 var img;
-
 

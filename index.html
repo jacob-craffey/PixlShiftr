@@ -8,28 +8,35 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
 </head>
 <body>
     
-    <canvas id="imageCanvas"></canvas>
-    
-    <div class="sidebar"> 
-        <h1>PixlShiftr</h1>
-        <input type="file" id="imageLoader" name="imageLoader">
-        <div data-role="main" class="ui-content">
-            <form method="post" action="/action_page_post.php">
-            <label for="points">Glitch:</label>
-            <input type="range" name="points" id="points" value="0" min="0" max="100" onchange="distort(this.value)">
-            </form>
+    <div class="main">
+        <canvas id="imageCanvas"></canvas>
+
+        <div class="sidebar"> 
+            <h1>PixlShiftr</h1>
+            <h3>By: Jacob Craffey</h3>
+            <input type="file" id="imageLoader" name="imageLoader">
+            <div data-role="main" class="ui-content">
+                <form method="post" action="/action_page_post.php">
+                <label id="glitch" for="points">Glitch:</label>
+                <input type="range" name="points" id="points" value="0" min="0" max="100" onchange="distort(this.value)">
+                </form>
+            
+            
+                <div class="button-menu">
+                    <button type="button" id="buttonInvert" class="button" onclick="invert()">Invert</button>
+                    <button type="button" id="buttonRevert" class="button" onclick="erase()">Erase</button>
+                    <button type="button" id="buttonSort" class="button" onclick="bubbleSort()">Sort</button>
+                </div> 
+
+                <button type="button" id="buttonSave" class="button" onclick="save()">Save</button>
+            </div> 
         </div>
-        
-        <div class="buttons">
-            <button type="button" id="buttonInvert" onclick="invert()">Invert</button>
-            <button type="button" id="buttonRevert" onclick="erase()">Erase</button>
-            <button type="button" id="buttonSort" onclick="bubbleSort()">Sort</button>
-        </div>  
     </div>
-   
+    <script src="FileSaver.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

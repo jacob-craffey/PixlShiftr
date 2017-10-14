@@ -1,3 +1,8 @@
+/*****************************************************
+File manipulation.  
+Handles the uploading and saving files.
+******************************************************/
+
 // Displays the image from the file chooser.
 function handleImage(e){
     console.log(e);
@@ -14,42 +19,17 @@ function handleImage(e){
     reader.readAsDataURL(e.target.files[0]);
 }
 
-// Gives the image a glitch effect
-function distort(newVal) {
-    imgData = getImgData();
-    var random;
-    var i = 0;
-       
-    while (i < imgData.data.length) {
-        random = (Math.floor(Math.random() * 2500) + 1) * 4;
-        i += random;
-        
-        var x = Math.floor((i / 4) % canvas.width);
-        var y = Math.floor((i / 4) / canvas.width);
-        
-        for (var j = 0; j < newVal; j++) {
-            imgData.data[((y * (imgData.width * 4)) + ((x * 4) + j))] = imgData.data[((Math.abs(y - newVal) * (imgData.width * 4)) + ((x * 4) + j))];
-            imgData.data[((y * (imgData.width * 4)) + ((x * 4) + j)) + 1] = imgData.data[((Math.abs(y - newVal) * (imgData.width * 4)) + ((x * 4) + j + 1))];
-            imgData.data[((y * (imgData.width * 4)) + ((x * 4) + j)) + 2] = imgData.data[((Math.abs(y - newVal) * (imgData.width * 4)) + ((x * 4) + j + 2))];
-            imgData.data[((y * (imgData.width * 4)) + ((x * 4) + j)) + 3] = imgData.data[((Math.abs(y - newVal) * (imgData.width * 4)) + ((x * 4) + j + 3))];
-        }
-    }
-    ctx.putImageData(imgData, 0, 0);
+// Returns the imageData for image.
+function getImgData() {
+    var imgData = ctx.getImageData(0, 0, parseInt(img.height)*2, parseInt(img.width)*2);
+    return imgData;
 }
 
-// Inverts the image's pixel color
-function invert(){
-    imgData = getImgData();
-    var invertNum = 255;
-    
-    for (var i = 0; i < imgData.data.length; i += 4) {
-        imgData.data[i] = invertNum - imgData.data[i];
-        imgData.data[i+1] = invertNum - imgData.data[i+1];
-        imgData.data[i+2] = invertNum - imgData.data[i+2];
-        imgData.data[i+3] = invertNum;
-    }
-    ctx.putImageData(imgData, 0, 0);
-}
+
+/*****************************************************
+Sorting
+Functions that are involved in the pixel sorting.
+******************************************************/
 
 /* Sorts the image's pixels from brightest to darkest.  
 DISCLAIMER: The bubblesort algorithm is not ideal for this an am working
@@ -79,17 +59,62 @@ function bubbleSort() {
                 imgData.data[i+6] = curBlue;
             }
         } 
-       
     }
-     ctx.putImageData(imgData, 0, 0);
-    
+    ctx.putImageData(imgData, 0, 0); 
 }
 
+/*****************************************************
+Web Page Behavior
+Functions that are called from the index
+******************************************************/
+
+// Called when user slides the 'Glitch' slider
+// Gives the image a glitch effect
+function distort(newVal) {
+    imgData = getImgData();
+    var random;
+    var i = 0;
+       
+    while (i < imgData.data.length) {
+        random = (Math.floor(Math.random() * 2500) + 1) * 4;
+        i += random;
+        
+        var x = Math.floor((i / 4) % canvas.width);
+        var y = Math.floor((i / 4) / canvas.width);
+        
+        for (var j = 0; j < newVal; j++) {
+            imgData.data[((y * (imgData.width * 4)) + ((x * 4) + j))] = imgData.data[((Math.abs(y - newVal) * (imgData.width * 4)) + ((x * 4) + j))];
+            imgData.data[((y * (imgData.width * 4)) + ((x * 4) + j)) + 1] = imgData.data[((Math.abs(y - newVal) * (imgData.width * 4)) + ((x * 4) + j + 1))];
+            imgData.data[((y * (imgData.width * 4)) + ((x * 4) + j)) + 2] = imgData.data[((Math.abs(y - newVal) * (imgData.width * 4)) + ((x * 4) + j + 2))];
+            imgData.data[((y * (imgData.width * 4)) + ((x * 4) + j)) + 3] = imgData.data[((Math.abs(y - newVal) * (imgData.width * 4)) + ((x * 4) + j + 3))];
+        }
+    }
+    ctx.putImageData(imgData, 0, 0);
+}
+
+// Called when user presses the 'invert' button
+// Inverts the image's pixel color
+function invert(){
+    imgData = getImgData();
+    var invertNum = 255;
+    
+    for (var i = 0; i < imgData.data.length; i += 4) {
+        imgData.data[i] = invertNum - imgData.data[i];
+        imgData.data[i+1] = invertNum - imgData.data[i+1];
+        imgData.data[i+2] = invertNum - imgData.data[i+2];
+        imgData.data[i+3] = invertNum;
+    }
+    ctx.putImageData(imgData, 0, 0);
+}
+
+// Called when user clicks the 'Erase' button
 // Returns the image to its original state.
 function erase() {
     ctx.drawImage(img, 0 , 0);
 }
 
+// Called when user clicks the 'Save' button
+// Saves your pretty picture to local drive
 function save() {
     canvas.toBlob(function(blob) {
         saveAs(blob, "PrettyPixlPic.png");
@@ -97,12 +122,10 @@ function save() {
 }
 
 
-// Returns the imageData for image.
-function getImgData() {
-    var imgData = ctx.getImageData(0, 0, parseInt(img.height)*2, parseInt(img.width)*2);
-    return imgData;
-}
-
+/*****************************************************
+On-Load
+Commands that are ran when web page is first loaded
+******************************************************/
 
 var imageLoader = document.getElementById('imageLoader');
 imageLoader.addEventListener('change', handleImage, false);

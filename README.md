@@ -23,4 +23,4 @@ Move the shifter back and forth to watch your image melt into a glitched mess in
 
 
 The sort algorithm is currently using bubble sort, which is inefficient and will be updated.  
-**Do not use sort with images larger than 720p unless you are very patient.
+** Caution ** Using sort on larger pictures will result in computations taking 5 minutes or longer.

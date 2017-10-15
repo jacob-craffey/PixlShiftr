@@ -7,17 +7,20 @@
     right: 25px;
     width: 300px;
     top: 25px;
-    background-color: #3E3D32;
+    background-color: #5E5D52;
 }
 
 #imageCanvas {
     width: auto;
     height: auto;
-    margin: 50px;
-    max-width: 50%;
+    margin:50px auto 50px auto;
+    display: block;
+    max-width: 1000px;
+    max-height: 1000px;
 }
 
 .button-menu {
+    position: center;
     width: 275px;
     display: flex;
     margin: 0 auto;
@@ -51,14 +54,16 @@ h1 {
 .main {
     position: relative;
     border-radius: 25px;
-    margin: 25px;
     min-height: 550px;
     max-height: 50%;
+    margin: 50px auto auto auto;
+    padding: 20px;
+    max-width: 1000px;
     background-color: #4E4D42;
 }
 
 .footer {
-    margin: auto;
+    margin: 15px auto 0px auto;
     width: 400px;
     background-color: #4E4D42;
     bottom: 0px;
